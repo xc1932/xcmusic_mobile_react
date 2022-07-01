@@ -1,0 +1,108 @@
+.home {
+    width: @width-main;
+    margin: 0 auto;
+    .searchArea {
+        margin: 5px 0;
+    }
+
+    .homeScrollWrapper {
+        height: 545px;
+        overflow: hidden;
+
+        .homeScrollContent {
+            .bannerArea {
+                height: 130px;
+                margin: 5px auto 15px;
+            }
+
+            .categoryArea {
+                margin-bottom: 10px;
+                padding: 0 10px 15px;
+                border-bottom: 1px solid @color-light;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+
+                .item {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
+                    img {
+                        width: 35px;
+                        height: 35px;
+                    }
+
+                    span {
+                        font-weight: @font-weight-bold;
+                    }
+                }
+
+            }
+
+            .header {
+                margin-bottom: 5px;
+                height: 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+
+                .title {
+                    font-size: @font-size-large ;
+                    font-weight: @font-weight-bold ;
+                }
+
+                .more {
+                    padding: 3px 10px;
+                    border: 1px solid @color-weak;
+                    border-radius: 11px;
+                    font-weight: @font-weight-bold ;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+
+            .recommendPlaylist {
+                margin-bottom: 5px;
+                height: 180px;
+
+                .recommendPlaylistScrollWrapper {
+                    white-space: nowrap;
+
+                    .recommendPlaylistContent {
+                        display: inline-block;
+                    }
+                }
+            }
+
+            .newAlbum {
+                margin-bottom: 5px;
+                height: 180px;
+
+                .newAlbumScrollWrapper {
+                    white-space: nowrap;
+
+                    .newAlbumContent {
+                        display: inline-block;
+                    }
+                }
+            }
+
+            .mv {
+                margin-bottom: 5px;
+                height: 180px;
+
+                .mvScrollWrapper {
+                    white-space: nowrap;
+
+                    .mvContent {
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+}

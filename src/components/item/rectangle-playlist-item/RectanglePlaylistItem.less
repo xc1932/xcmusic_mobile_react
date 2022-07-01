@@ -1,0 +1,44 @@
+.rectanglePlaylistItem {
+    position: relative;
+    width: 115px;
+    margin-bottom: 20px;
+
+    .playlistCover {
+        margin-bottom: 4px;
+        width: 115px;
+        height: 115px;
+        border-radius: @border-radius-small-s;
+        overflow: hidden;
+        #mixin-card-shallow;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .playlistTitle {
+        width: 100%;
+        height: 29px;
+        font-size: @font-size-small-s;
+        font-weight: @font-weight-bold;
+        color: @color-text;
+        text-align: justify;
+        #mixin-text-overflow-ellipsis(@line: 2);
+    }
+
+    .playCount {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        padding: 0 6px;
+        border-radius: @border-radius-small-s;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: @color-white;
+        font-size: @font-size-small;
+        transform: scale(0.9) translate(6px, -2px);
+    }
+}

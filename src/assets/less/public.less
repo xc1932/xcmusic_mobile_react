@@ -1,0 +1,169 @@
+// 一、variables
+// (1)color
+@color-primary: #31c27c;
+@color-success: #00b578;
+@color-warning: #ff8f1f;
+@color-danger: #ff3141;
+@color-white: #ffffff;
+@color-weak: #999999;
+@color-light: #eee;
+@color-text: #333333;
+@border-color: #eeeeee;
+
+// (2)字体
+@font-size-small-s: 10px;
+@font-size-small: 12px;
+@font-size-normal: 16px;
+@font-size-large: 20px;
+@font-size-large-x: 22px;
+
+@font-weight-thin: 100; //thin
+@font-weight-light: 300; //light
+@font-weight-normal: 400; //normal
+@font-weight-medium: 500; //medium
+@font-weight-bold: 700; //bold
+
+// (3)border
+@border-radius-small-s: 9px;
+@border-radius-small: 12px;
+@border-radius-normal: 15px;
+@border-radius-large: 18px;
+
+// (4)宽度
+@width-main: 98%;
+@width-main-small: 90%;
+
+// (5)transition
+@trans-time-long: .5s;
+@trans-time-middle: .3s;
+@trans-time-short: .1s;
+
+// (6)player
+@player-mini-height: 40px;
+@player-mini-border-radius: 25px;
+
+
+// 二、mixins
+// 1.外观性
+// (1)卡片效果
+#mixin-card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#mixin-card-shallow {
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+#mixin-card-deep {
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+// (2)毛玻璃效果
+#mixin-frosted-glass(@bgc: rgba(255, 255, 255, 0.3), @blur: 10px) {
+    background-color: @bgc;
+    backdrop-filter: blur(@blur);
+    -webkit-backdrop-filter: blur(@blur);
+}
+
+// (3)过渡动画
+#mixin-transition-player(@duration: 0.6s) {
+    transition: all @duration cubic-bezier(0.45, 0, 0.55, 1);
+}
+
+// 2.功能性
+// (1)清除浮动
+#mixin-clearfix {
+
+    &::after,
+    &::before {
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+
+// (2)文本溢出省略号显示
+// 自定义行数
+#mixin-text-overflow-ellipsis(@line: 1) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: @line;
+}
+
+// 单行
+#mixin-text-overflow-ellipsis-single {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// (3)禁止选中文字
+#mixin-disable-selection {
+    -khtml-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+// (4)禁止滚动条
+#mixin-disable-scroll {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+// (5)居中
+// flex实现
+#mixin-center-flex(@direction: row) {
+    display: flex;
+    flex-direction: @direction;
+    justify-content: center;
+    align-items: center;
+}
+
+// absolute实现
+#mixin-center-margin {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+// margin实现(水平居中)
+#mixin-center-margin-horizontal {
+    margin: 0 auto;
+}
+
+// (6)背景图片
+#mixin-bgi-cover-center(@url) {
+    background-image: url(@url);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+// (7)光盘旋转
+#minin-animation-rotate-disk {
+    animation: diskrotate 15s linear infinite;
+}
+
+#minin-animation-rotate-delay-disk(@delay: 0.6) {
+    animation: diskrotate 15s linear @delay infinite;
+}
+
+// 光盘旋转动画
+@keyframes diskrotate {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(1turn);
+    }
+}

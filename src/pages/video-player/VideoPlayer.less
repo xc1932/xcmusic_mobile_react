@@ -1,0 +1,154 @@
+.videoPlayerPage {
+    .videoContainer {
+        height: 211px;
+    }
+
+    .info {
+        padding: 5px 10px;
+        height: 114px;
+        background-color: @color-white;
+
+        .artist {
+            height: 35px;
+            display: flex;
+            align-items: center;
+
+            .avatar {
+                margin-right: 5px;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                overflow: hidden;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .name {
+                width: 150px;
+                font-size: @font-size-normal;
+                font-weight: @font-weight-bold;
+                #mixin-text-overflow-ellipsis-single;
+            }
+        }
+
+        .desc {
+
+            .title {
+                margin-bottom: 5px;
+                line-height: 25px;
+                height: 25px;
+                font-size: @font-size-large ;
+                font-weight: @font-weight-bold ;
+                #mixin-text-overflow-ellipsis-single;
+            }
+
+            .desc {
+                margin-bottom: 5px;
+                font-size: @font-size-small;
+                #mixin-text-overflow-ellipsis-single;
+            }
+
+            .dynamicDetail {
+                width: 100%;
+                height: 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                color: @color-weak;
+
+                .left {
+                    width: 50%;
+                    display: flex;
+
+                    .playCount {
+                        margin-right: 15px;
+                    }
+                }
+
+                .right {
+                    width: 50%;
+                    display: flex;
+                    justify-content: end;
+                    align-items: center;
+
+                    .commentCount {
+                        margin-right: 5px;
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .shareCount {
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+    }
+
+    .scrollWrapper {
+        margin: 0 auto;
+        width: @width-main;
+        height: 342px;
+        overflow: hidden;
+
+        .scrollContent {
+            padding: 10px 10px 0;
+
+            .similarMVItem {
+                margin-bottom: 10px;
+                display: flex;
+                justify-content: space-between;
+
+                .left {
+                    position: relative;
+                    flex: none;
+                    width: 170px;
+                    height: 90px;
+                    border-radius: @border-radius-small-s;
+                    overflow: hidden;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+
+                    .duration {
+                        position: absolute;
+                        right: 5px;
+                        bottom: 5px;
+                        color: #fff;
+                    }
+                }
+
+                .right {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    width: 160px;
+
+                    .title {
+                        margin-bottom: 20px;
+                        font-size: @font-size-normal;
+                        font-weight: @font-weight-bold;
+                        #mixin-text-overflow-ellipsis-single;
+                    }
+
+                    .artist {
+                        margin-bottom: 5px;
+                        font-size: @font-size-small ;
+                        color: @color-weak ;
+                    }
+
+                    .playCount {
+                        font-size: @font-size-small ;
+                        color: @color-weak ;
+                    }
+                }
+            }
+        }
+    }
+}

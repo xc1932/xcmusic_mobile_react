@@ -1,0 +1,140 @@
+.searchPage {
+    margin: 0 auto;
+    height: 100%;
+
+    .searchArea {
+        height: 50px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+
+        .adm-search-bar {
+            width: 70%;
+        }
+
+        .searchBtn {
+            font-size: @font-size-normal;
+            font-weight: @font-weight-bold;
+            color: @color-primary;
+        }
+    }
+
+    .scrollWrapper {
+        height: 617px;
+        background-color: @color-light;
+        overflow: hidden;
+
+        .scrollContent {
+            display: flow-root;
+
+            .defaultArea {
+                margin-top: 5px;
+                padding: 0 15px;
+
+                .historyArea,
+                .hotSearchArea {
+
+                    .header {
+                        height: 30px;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .title {
+                            font-size: @font-size-large;
+                            font-weight: @font-weight-bold ;
+                        }
+                    }
+
+                    .historyShow,
+                    .hotSearchShow {
+                        padding: 7px 0;
+
+                        .tag,
+                        .more {
+                            display: inline-block;
+                            margin: 0 5px 5px 0;
+                            padding: 2px 10px;
+                            max-width: 150px;
+                            height: 20px;
+                            line-height: 15px;
+                            border-radius: 10px;
+                            background-color: @color-white;
+                            color: @color-weak;
+                            font-size: 12px;
+                            #mixin-text-overflow-ellipsis-single;
+                        }
+                    }
+                }
+            }
+
+            .suggestArea {
+                min-height: 617px;
+                background-color: @color-white;
+
+                .suggestItem {
+                    margin-bottom: 2px;
+                    height: 30px;
+                    display: flex;
+                    align-items: center;
+
+                    .searchIcon {
+                        flex: none;
+                        margin: 0 10px;
+                    }
+
+                    .content {
+                        flex: 1;
+                        height: 100%;
+                        line-height: 29px;
+                        border-bottom: 1px solid @color-light;
+                    }
+                }
+            }
+
+            .resultArea {
+                .loading {
+                    height: 50px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .resultContent {
+                    .header {
+                        padding: 0 10px;
+                        height: 35px;
+                        line-height: 35px;
+                        font-size: @font-size-large;
+                        font-weight: @font-weight-bold;
+                    }
+
+                    .commonItem {
+                        margin: 0 0 3px 0;
+                    }
+
+                    .playlistContent,
+                    .albumContent,
+                    .artistContent {
+
+                        .playlistList,
+                        .albumList,
+                        .artistList {
+                            display: grid;
+                            grid-template-columns: repeat(3, 1fr);
+                            justify-items: center;
+                        }
+                    }
+
+                    .mvContent {
+                        .mvList {
+                            display: grid;
+                            grid-template-columns: repeat(2, 1fr);
+                            justify-items: center;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

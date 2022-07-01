@@ -1,0 +1,52 @@
+.commonItem {
+    display: inline-block;
+    margin-right: 10px;
+
+    .commonItemTop {
+        position: relative;
+        margin-bottom: 3px;
+
+        .commonItemCover {
+            border-radius: @border-radius-small-s;
+            overflow: hidden;
+            #mixin-card-shallow;
+
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .commonItemPlayCount {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            padding: 0 7px;
+            height: 20px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: @color-white;
+            #mixin-center-flex;
+        }
+
+        .commonItemPublishTime {
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+            padding: 0 5px;
+            height: 20px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 1);
+            color: @color-white;
+            #mixin-center-flex;
+        }
+    }
+
+    .commonItemBot {
+        width: 100%;
+        height: 30px;
+        font-size: @font-size-small;
+        text-align: justify;
+        #mixin-text-overflow-ellipsis(@line: 2);
+    }
+}

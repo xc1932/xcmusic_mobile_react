@@ -1,0 +1,112 @@
+.playerList {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    visibility: hidden;
+    #mixin-frosted-glass(@bgc: rgba(0, 0, 0, 0.5), @blur: 0);
+    #mixin-transition-player(@duration: 0.3s);
+
+    .playerlist-slide-wrapper {
+        margin-bottom: -400px;
+        width: 345px;
+        height: 400px;
+        white-space: nowrap;
+        #mixin-center-margin-horizontal;
+        #mixin-transition-player(@duration: 0.3s);
+
+        .playerlist-slide-content {
+            display: inline-block;
+            height: 100%;
+
+            .historyPlay,
+            .currentPlay {
+                display: inline-block;
+                padding: 0 5px;
+                width: 345px;
+                height: 100%;
+
+                .bgArea {
+                    display: flex;
+                    flex-direction: column;
+                    height: 100%;
+                    padding: 10px 18px 0;
+                    border-radius: @border-radius-large;
+                    background-color: @color-white;
+
+                    .header {
+                        flex: none;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        height: 35px;
+
+                        .title {
+                            font-size: @font-size-normal;
+                            font-weight: @font-weight-bold ;
+
+                            .count {
+                                font-size: @font-size-small-s;
+                                color: @color-weak;
+                            }
+                        }
+
+                        .btns {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 120px;
+                        }
+                    }
+
+                    .historylist-scroll-wrapper,
+                    .currentlist-scroll-wrapper {
+                        flex: 1;
+                        overflow: hidden;
+
+                        .historylist-scroll-content,
+                        .currentlist-scroll-content {
+                            .item {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                height: 40px;
+                                line-height: 40px;
+
+                                .trackInfo {
+                                    flex: 1;
+                                    #mixin-text-overflow-ellipsis-single;
+
+                                    .trackName {
+                                        font-size: @font-size-small ;
+                                        font-weight: @font-weight-bold;
+                                        color: @color-text;
+                                    }
+
+                                    .trackArtist {
+                                        font-size: @font-size-small;
+                                        font-weight: @font-weight-light;
+                                        color: @color-weak;
+                                    }
+                                }
+
+                                .btn {
+                                    flex: none;
+                                    margin-left: 5px;
+                                    width: 16px;
+                                    height: 100%;
+                                    #mixin-center-flex;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

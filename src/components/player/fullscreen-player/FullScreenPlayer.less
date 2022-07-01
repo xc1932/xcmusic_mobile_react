@@ -1,0 +1,177 @@
+ .background-layer {
+     position: fixed;
+     top: 0;
+     bottom: 0;
+     left: 0;
+     right: 0;
+     opacity: 0;
+     visibility: hidden;
+     #mixin-transition-player;
+
+     //  背景图片
+     img {
+         width: 100%;
+         height: 100%;
+     }
+
+     .fullscreenPlayer {
+         display: flex;
+         flex-direction: column;
+         position: fixed;
+         top: 0;
+         bottom: 0;
+         left: 0;
+         right: 0;
+         #mixin-frosted-glass(@bgc: rgba(0, 0, 0, 0.5), @blur: 35px);
+
+         .fullscreenplayer-top {
+             flex: none;
+             display: flex;
+             flex-direction: column;
+             justify-content: center;
+             align-items: center;
+             position: relative;
+             margin-top: -60px;
+             height: 60px;
+             #mixin-transition-player;
+
+             .btn {
+                 position: absolute;
+                 top: 0;
+                 left: 0;
+             }
+
+             .track-name {
+                 margin-bottom: 2px;
+                 width: 50%;
+                 height: 30px;
+                 font-weight: @font-weight-bold;
+
+                 .adm-notice-bar {
+                     .adm-notice-bar-content {
+                         justify-content: center;
+                     }
+
+                     .adm-notice-bar-left {
+                         display: none;
+                     }
+                 }
+
+             }
+
+             .track-artist {
+                 width: 30%;
+                 font-size: @font-size-small;
+                 font-weight: @font-weight-normal;
+                 text-align: center;
+                 color: @color-white;
+                 #mixin-text-overflow-ellipsis-single
+             }
+         }
+
+         .fullscreenplayer-body {
+             flex: 1;
+             display: flex;
+             justify-content: space-between;
+             align-items: center;
+             height: 447px;
+
+             .cdWrapper {
+                 flex: none;
+                 display: flex;
+                 justify-content: center;
+                 align-items: center;
+                 position: relative;
+                 width: 100%;
+                 height: 100%;
+
+                 .armArea {
+                     position: fixed;
+                     top: 65px;
+                     left: 50%;
+                     margin-left: -14px;
+                     z-index: 1;
+                     transform-origin: 14px 14px;
+                     transform: rotate(-25deg);
+                     #mixin-transition-player;
+
+                     img {
+                         width: 94px;
+                         height: 154px;
+                     }
+                 }
+
+                 .baseArea {
+                     width: 250px;
+                     height: 250px;
+                     border-radius: 50%;
+                     background-color: rgba(136, 136, 136, 0.5);
+
+                     .diskArea {
+                         position: relative;
+                         margin-bottom: 20px;
+                         width: 250px;
+                         height: 250px;
+                         #mixin-bgi-cover-center('@/assets/images/ring.png');
+
+                         img {
+                             width: 74%;
+                             height: 74%;
+                             border-radius: 50%;
+                             #mixin-center-margin;
+                         }
+                     }
+                 }
+             }
+
+             .lyricWrapper {
+                 flex: none;
+                 width: 100%;
+                 height: 90%;
+                 z-index: 1;
+                 color: @color-light;
+                 overflow: hidden;
+
+                 .lyricContent {
+                     display: flex;
+                     flex-direction: column;
+                     align-items: center;
+                     margin: 0 auto;
+                     width: 90%;
+
+                     .lyricLine {
+                         width: 100%;
+                         height: 50px;
+                         line-height: 50px;
+                         font-size: @font-size-normal;
+                         text-align: center;
+                         #mixin-text-overflow-ellipsis-single;
+                     }
+
+                     .currentLine {
+                         transform: scale(1.2);
+                         color: @color-white ;
+                         transition: all 0.3s ease;
+                     }
+                 }
+
+                 .loading {
+                     width: 100%;
+                     height: 100%;
+                     #mixin-center-flex;
+                 }
+
+                 h1 {
+                     text-align: center;
+                 }
+             }
+         }
+
+         .fullscreenplayer-bottom {
+             flex: none;
+             margin-bottom: -160px;
+             padding: 15px 0;
+             #mixin-transition-player;
+         }
+     }
+ }

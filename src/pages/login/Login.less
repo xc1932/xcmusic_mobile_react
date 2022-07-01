@@ -1,0 +1,43 @@
+.login {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: @color-white;
+
+    .close {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        opacity: 0.5;
+        font-size: @font-size-large;
+        color: @color-weak;
+    }
+
+    .avatar {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        margin: 50px 0;
+        #mixin-bgi-cover-center('@/assets/images/dog.jpg');
+        background-position: center 10px;
+        #mixin-card;
+    }
+
+    .form-area {
+        width: 350px;
+        border-radius: @border-radius-normal;
+        #mixin-center-flex;
+
+        .adm-list-header {
+            text-align: center;
+            font-weight: @font-weight-bold;
+            font-size: @font-size-large;
+            color: @color-text;
+        }
+    }
+}
