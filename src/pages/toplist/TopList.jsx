@@ -4,6 +4,7 @@ import withRouter from '@/utils/withRouter'
 import { getToplistDetail } from '@/api/playlist'
 import Loading from '@/components/loading/Loading'
 import NavBar from '@/components/navbar/NavBar'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 import RectangleToplistItem from '@/components/item/rectangle-toplist-item/RectangleToplistItem'
 import './TopList.less'
 
@@ -74,7 +75,7 @@ class TopList extends Component {
                                     if (tl.toplist_tracks == null) {
                                         return (
                                             <div className="simpleToplistItem" key={index} onClick={() => navigate(`/playlist/${tl.toplist_id}`)}>
-                                                <img src={tl.toplist_cover} />
+                                                <LazyLoadImage src={tl.toplist_cover} effect="blur"/>
                                                 <div className="updateFrequency">{tl.toplist_updateFrequency}</div>
                                             </div>
                                         )

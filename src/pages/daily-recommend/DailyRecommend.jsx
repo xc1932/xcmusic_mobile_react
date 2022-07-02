@@ -1,4 +1,5 @@
 import React, { Component, createRef } from 'react'
+import { Navigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import BScroll from 'better-scroll'
 import { Play } from '@icon-park/react'
@@ -124,6 +125,8 @@ class DailyRecommend extends Component {
         }
     }
     componentDidMount() {
+        const { isLogin } = this.props
+        if (!isLogin) return
         // 获取数据
         this.getRecommendSongs()
         // bs初始化
@@ -152,8 +155,9 @@ class DailyRecommend extends Component {
     }
     render() {
         const { imageAreaStyle, scrollAreaContentStyle, playAll } = this
+        const { isLogin } = this.props
         const { dailyTracks } = this.state
-        return (
+        return !isLogin ? <Navigate to='/home' /> : (
             <div className='dailyRecommend'>
                 {dailyTracks.length === 0 ? <Loading /> : ''}
                 <div className="navbarArea">
@@ -187,6 +191,7 @@ class DailyRecommend extends Component {
 
 export default connect(
     state => ({
+        isLogin: state.user.isLogin,
         playList: state.player.playList
     }),
     {

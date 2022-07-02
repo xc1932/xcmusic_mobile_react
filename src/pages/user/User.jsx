@@ -1,8 +1,9 @@
 import React, { Component, createRef } from 'react'
+import { Navigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import BScroll from 'better-scroll'
 import { Tabs, Swiper, DotLoading, Toast, Popup, Form, Input } from 'antd-mobile'
-import { Plus } from '@icon-park/react'
+import { Plus, Logout } from '@icon-park/react'
 import withRouter from '@/utils/withRouter'
 import { longNumberConvert, playTimeFormat } from '@/utils/common'
 import {
@@ -16,6 +17,7 @@ import {
   deleteUserPlaylist
 } from '@/api/user'
 import CommonListItem from '@/components/item/common-list-item/CommonListItem'
+import { logoutAction } from '@/redux/actions/user'
 import './User.less'
 
 const tabItems = [
@@ -188,6 +190,8 @@ class User extends Component {
   }
   // 生命周期
   componentDidMount() {
+    const { isLogin } = this.props
+    if (!isLogin) return
     // 获取用户信息
     this.getUserData()
     // 获取用户收藏信息
@@ -198,20 +202,23 @@ class User extends Component {
     })
   }
   componentDidUpdate() {
-    this.mainBS.refresh()
+    if (this.mainBS) this.mainBS.refresh()
   }
   render() {
     const { scrollWrapperRef, swiperRef, createPlaylist, deleteUserPlaylistHandler } = this
-    const { userProfile, navigate } = this.props
+    const { userProfile, navigate, logout, isLogin } = this.props
     const { userInfo, userPlaylists, userAlbums, userArtists, userMVs, activeIndex, popupShow, value } = this.state
     const defaultPlaylist = userPlaylists.length > 0 ? userPlaylists[0] : null
     const myPlaylists = userPlaylists.length > 0 ? userPlaylists.filter(p => p.playlist_self).slice(1) : []
     const collectPlaylists = userPlaylists.length > 0 ? userPlaylists.filter(p => !p.playlist_self) : []
-    return (
+    return !isLogin ? <Navigate to='/home' /> : (
       <div className='userPage' ref={scrollWrapperRef}>
         <div className="scrollContent">
           <div className="userCarWrapper">
             <div className="userInfoCard">
+              <div className="logout" onClick={() => { logout() }}>
+                <Logout theme="outline" size="24" fill="#999" />
+              </div>
               <div className="avatar">
                 <img src={userProfile.avatarUrl} />
               </div>
@@ -420,7 +427,10 @@ class User extends Component {
 }
 export default connect(
   state => ({
+    isLogin: state.user.isLogin,
     userProfile: state.user.profile
   }),
-  {}
+  {
+    logout: logoutAction
+  }
 )(withRouter(User))

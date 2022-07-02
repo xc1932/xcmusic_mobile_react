@@ -1,4 +1,5 @@
 .videoPlayerPage {
+    height: 100%;
     .videoContainer {
         height: 211px;
     }
@@ -90,9 +91,11 @@
     }
 
     .scrollWrapper {
+        display: flow-root;
         margin: 0 auto;
         width: @width-main;
-        height: 342px;
+        // height: 342px;
+        height: calc(100% - 325px);
         overflow: hidden;
 
         .scrollContent {
@@ -111,9 +114,14 @@
                     border-radius: @border-radius-small-s;
                     overflow: hidden;
 
-                    img {
+                    span {
                         width: 100%;
                         height: 100%;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                        }
                     }
 
                     .duration {

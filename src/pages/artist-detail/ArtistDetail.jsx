@@ -1,10 +1,11 @@
-import React, { Component, createRef, Fragment } from 'react'
+import React, { Component, createRef } from 'react'
 import BScroll from 'better-scroll'
 import dayjs from 'dayjs'
 import { Tabs, Swiper, Ellipsis, Toast } from 'antd-mobile'
 import withRouter from '@/utils/withRouter'
 import { playTimeFormat, longNumberConvert } from '@/utils/common'
 import { getArtistDetail, getArtistDesc, getArtistAlbum, getArtistMV } from '@/api/artist'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 import NavBar from '@/components/navbar/NavBar'
 import './ArtistDetail.less'
 
@@ -191,7 +192,7 @@ class ArtistDetail extends Component {
                                             return (
                                                 <div className="albumItem" key={a.album_id} onClick={() => navigate(`/album/${a.album_id}`)}>
                                                     <div className="albumCover">
-                                                        <img src={a.album_cover} />
+                                                        <LazyLoadImage src={a.album_cover} effect="blur"/>
                                                     </div>
                                                     <div className="albumDesc">
                                                         <div className="albumTop">
@@ -218,7 +219,7 @@ class ArtistDetail extends Component {
                                         return (
                                             <div className="mvItem" key={mv.mv_id} onClick={() => navigate(`/video/${mv.mv_id}`, { state: { type: 0 } })}>
                                                 <div className="mvLeft">
-                                                    <img src={mv.mv_cover} />
+                                                    <LazyLoadImage src={mv.mv_cover} effect="blur"/>
                                                     <div className="mvDuration">{playTimeFormat(Math.floor(mv.mv_duration / 1000))}</div>
                                                 </div>
                                                 <div className="mvRight">

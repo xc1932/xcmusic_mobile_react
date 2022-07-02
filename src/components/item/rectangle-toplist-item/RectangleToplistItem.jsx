@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import withRouter from '@/utils/withRouter'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 import './RectangleToplistItem.less'
 
 class RectangleToplistItem extends Component {
@@ -10,7 +11,7 @@ class RectangleToplistItem extends Component {
                 <div className="toplistCardLeft">
                     <div className="toplistName">{toplist?.toplist_name}</div>
                     <div className="toplistCover">
-                        <img src={toplist?.toplist_cover} />
+                        <LazyLoadImage src={toplist?.toplist_cover} effect="blur"/>
                     </div>
                 </div>
                 <div className="toplistCardRight">

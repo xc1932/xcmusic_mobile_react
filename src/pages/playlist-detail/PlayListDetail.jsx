@@ -10,7 +10,6 @@ import { longNumberConvert } from '@/utils/common'
 import { getTrackPlayData } from '@/api/track'
 import { getPlaylistDetail, getPlaylistDetailDynamic } from '@/api/playlist'
 import NavBar from '@/components/navbar/NavBar'
-import Loading from '@/components/loading/Loading'
 import RectangleTrackItem from '@/components/item/rectangle-track-item/RectangleTrackItem'
 import { savePlayerDataAction, selectTrackAction } from '@/redux/actions/player'
 import './PlayListDetail.less'
@@ -115,9 +114,9 @@ class PlayListDetail extends Component {
     }
     // 播放所有推荐歌曲
     playAll = () => {
-        const { savePlayerData } = this.props
+        const { playList, savePlayerData } = this.props
         const { tracklist, complete, hasPlayed } = this.state
-        if (hasPlayed || tracklist.length == 0) return
+        if ((hasPlayed && playList.length > 0) || tracklist.length == 0) return
         if (complete) {
             // 直接播放
             savePlayerData(tracklist)
@@ -133,11 +132,21 @@ class PlayListDetail extends Component {
     }
     // 播放选中歌曲
     playTrack = (trackId) => {
-        const { savePlayerData, selectTrack } = this.props
+        const { savePlayerData, selectTrack, playList } = this.props
         const { tracklist, complete, hasPlayed } = this.state
-        if (hasPlayed) {
+        const willPlayedTrack = tracklist.find(t => t.track_id === trackId)
+        // 禁止播放没有播放来源的track
+        if (willPlayedTrack.track_url == null) {
+            Toast.show({
+                content: '不能播放该音乐~ ^v^'
+            })
+            return
+        }
+        // 已经播放过,直接播放选中的歌曲
+        if (hasPlayed && playList.length > 0) {
             selectTrack(trackId)
         } else {
+            // 没有播放过
             if (complete) {
                 // 已经加载好要播放的歌曲,直接播放
                 savePlayerData(tracklist, trackId)

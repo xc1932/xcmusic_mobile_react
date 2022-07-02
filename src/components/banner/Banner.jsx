@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Swiper, Image, Toast } from 'antd-mobile'
 import withRouter from '@/utils/withRouter'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 import './Banner.less'
 
 import { getBanner } from '@/api/common'
@@ -72,7 +73,7 @@ class Banner extends Component {
                                 return (
                                     <Swiper.Item key={index} onClick={() => toPage(banner)}>
                                         <div className="bannerItem">
-                                            <Image src={banner.imageUrl}></Image>
+                                            <LazyLoadImage effect="blur" src={banner.imageUrl}/>
                                             <div
                                                 className="banner-title"
                                                 style={{ backgroundColor: banner.titleColor }}

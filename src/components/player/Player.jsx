@@ -16,7 +16,7 @@ class Player extends Component {
 
   state = {
     playStatus: false,  //false：暂停   true：播放
-    isFullscreen: true,
+    isFullscreen: false,
     currentTime: 0
   }
 
@@ -97,6 +97,7 @@ class Player extends Component {
 
   // 播放器可以播放处理
   canplayHandler = () => {
+    console.log('canplayHandler');
     // 当 audio 获取 url (切换歌曲、将歌曲添加到播放器)并且canplay后，
     // 根据redux中的播放状态操作DOM播放歌曲
     const { realPlayStatus } = this.props
@@ -144,7 +145,9 @@ class Player extends Component {
   // 播放出错处理
   errorHandler = (err) => {
     // 1.处理播放路径失效问题
-    console.log('audio Error', err);
+    console.log('播放出错(audio Error)', err);
+    // 暂停播放
+    this.audioPause()
     // 更新播放器数据
     this.updatePlayerData()
   }
@@ -185,10 +188,21 @@ class Player extends Component {
     })
   }
   componentDidUpdate(prevProps, prevState) {
+    const audioDOM = this.audioRef.current
+    const { currentTrack } = this.props
+    const { playStatus } = this.state
     const currentTrackId = this.props.currentTrack.track_id
     const currentTrackLyric = this.props.currentTrack.track_lyric
     if (currentTrackLyric == null) {
       this.props.loadTrackLyric(currentTrackId)
+    }
+    //
+    // 无可用播放资源,暂停播放
+    if (currentTrack.track_url === null) {
+      audioDOM.pause()
+      if (playStatus) {
+        this.setState({ playStatus: false })
+      }
     }
   }
 

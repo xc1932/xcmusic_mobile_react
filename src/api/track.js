@@ -125,7 +125,7 @@ function rawDetailDataConvert(tracks, privileges, urls) {
         // 歌曲的歌词
         const track_lyric = null
         // 歌曲的播放权限
-        const track_privilege = trackPrivilegeConvert(url, privilege.fee)
+        const track_privilege = trackPrivilegeConvert(url, privilege.fee, track.noCopyrightRcmd)
 
         return {
             track_id,
@@ -145,13 +145,14 @@ function rawDetailDataConvert(tracks, privileges, urls) {
 }
 
 // 获取歌曲的播放权限
-function trackPrivilegeConvert(url, fee) {
+function trackPrivilegeConvert(url, fee, noCopyrightRcmd) {
     let playable = true, reason = ''
     if (url == null) {
         playable = false
+        reason = '无法播放'
         switch (fee) {
             case 0:
-                reason = '无版权'
+                if (noCopyrightRcmd !== null && noCopyrightRcmd !== undefined) reason = '无版权'
                 break
             case 1:
                 reason = 'VIP歌曲'

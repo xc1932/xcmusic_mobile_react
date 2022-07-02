@@ -8,6 +8,7 @@ import withRouter from '@/utils/withRouter'
 import { longNumberConvert, playTimeFormat } from '@/utils/common'
 import { getMVDetail, getMVUrl, getSimilarMV } from '@/api/mv'
 import { getVideoDetail, getVideoUrl, getVideoInfo } from '@/api/video'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Loading from '@/components/loading/Loading'
 import NavBar from '@/components/navbar/NavBar'
 import './VideoPlayer.less'
@@ -190,7 +191,7 @@ class VideoPlayer extends Component {
                                         key={mv.mv_id}
                                         onClick={() => navigate(`/video/${mv.mv_id}`, { replace: true, state: { type: 0 } })}>
                                         <div className="left">
-                                            <img src={mv?.mv_cover} />
+                                            <LazyLoadImage src={mv?.mv_cover} effect="blur" />
                                             <div className="duration">{playTimeFormat(Math.floor(mv?.mv_duration / 1000))}</div>
                                         </div>
                                         <div className="right">

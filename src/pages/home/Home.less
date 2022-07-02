@@ -1,12 +1,15 @@
 .home {
     width: @width-main;
+    height: 100%;
     margin: 0 auto;
+
     .searchArea {
         margin: 5px 0;
     }
 
     .homeScrollWrapper {
-        height: 545px;
+        // height: 545px;
+        height: calc(100% - 60px);
         overflow: hidden;
 
         .homeScrollContent {

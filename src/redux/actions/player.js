@@ -15,6 +15,7 @@ import { getLyric } from '@/api/track'
 
 // 保存播放数据(1.默认播放第一首    2.根据trackId播放指定歌曲)
 export function savePlayerDataAction(playList, trackId) {
+    playList = playList.filter(t => t.track_url !== null)
     const playMode = store.getState().player.playMode
     const shuffleList = shuffle(playList)
     let currentIndex = 0

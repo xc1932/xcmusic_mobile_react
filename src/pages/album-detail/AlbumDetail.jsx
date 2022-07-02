@@ -4,7 +4,7 @@ import dayjs from 'dayjs'
 import BScroll from 'better-scroll'
 import { Ellipsis } from 'antd-mobile'
 import { Play, Add, Comment, ShareOne } from '@icon-park/react'
-import { DotLoading } from 'antd-mobile'
+import { DotLoading, Toast } from 'antd-mobile'
 import withRouter from '@/utils/withRouter'
 import { longNumberConvert } from '@/utils/common'
 import { getTrackPlayData } from '@/api/track'
@@ -107,9 +107,9 @@ class AlbumDetail extends Component {
     }
     // 播放所有推荐歌曲
     playAll = () => {
-        const { savePlayerData } = this.props
+        const { playList, savePlayerData } = this.props
         const { tracklist, complete, hasPlayed } = this.state
-        if (hasPlayed || tracklist.length == 0) return
+        if ((hasPlayed && playList.length > 0) || tracklist.length == 0) return
         if (complete) {
             // 直接播放
             savePlayerData(tracklist)
@@ -125,11 +125,21 @@ class AlbumDetail extends Component {
     }
     // 播放选中歌曲
     playTrack = (trackId) => {
-        const { savePlayerData, selectTrack } = this.props
+        const { savePlayerData, selectTrack, playList } = this.props
         const { tracklist, complete, hasPlayed } = this.state
-        if (hasPlayed) {
+        const willPlayedTrack = tracklist.find(t => t.track_id === trackId)
+        // 禁止播放没有播放来源的track
+        if (willPlayedTrack.track_url == null) {
+            Toast.show({
+                content: '不能播放该音乐~ ^v^'
+            })
+            return
+        }
+        // 已经播放过,直接播放选中的歌曲
+        if (hasPlayed && playList.length > 0) {
             selectTrack(trackId)
         } else {
+            // 没有播放过
             if (complete) {
                 // 已经加载好要播放的歌曲,直接播放
                 savePlayerData(tracklist, trackId)

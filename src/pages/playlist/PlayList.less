@@ -40,7 +40,8 @@
     }
 
     .playlistWrapper {
-        height: 587px;
+        // height: 587px;
+        height: calc(100% - 40px);
         width: @width-main;
         margin: 10px auto 0;
 
@@ -48,6 +49,7 @@
             .playlistGroup {
                 display: grid;
                 grid-template-columns: repeat(3, 1fr);
+                justify-items: center;
             }
 
             .loading {

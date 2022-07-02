@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import withRouter from '@/utils/withRouter'
 import { PlayTwo, MoreOne } from '@icon-park/react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 import './RectangleTrackItem.less'
 
 class RectangleTrackItem extends Component {
@@ -27,13 +28,16 @@ class RectangleTrackItem extends Component {
         const { track } = this.props
         const mvIconStyle = { visibility: track.track_mv ? 'visible' : 'hidden' }
         return (
-            <div className='rectangleTrackItem' onClick={(e) => playTrackHandler(e, track.track_id)}>
+            <div
+                className='rectangleTrackItem'
+                style={{ filter: track.track_privilege?.playable ? '' : 'grayscale(100%)' }}
+                onClick={(e) => playTrackHandler(e, track.track_id)}>
                 <div className="trackCover">
-                    <img src={track?.track_album?.album_cover} />
+                    <LazyLoadImage src={track?.track_album?.album_cover} effect="blur" />
                 </div>
                 <div className="trackDesc">
                     <div className="trackName">
-                        <div className="privilege">{track.track_privilege?.reason}</div>
+                        <div className="privilege" style={{ display: track.track_privilege?.playable ? 'none' : '' }}>({track.track_privilege?.reason})</div>
                         {track.track_name}
                     </div>
                     <div className="trackArtists">

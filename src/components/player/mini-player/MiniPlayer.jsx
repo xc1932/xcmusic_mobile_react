@@ -27,8 +27,6 @@ class MiniPlayer extends Component {
         PubSub.subscribe('Player_CurrentProcess', (_, { currentProcess }) => {
             this.setState({ percent: currentProcess })
         })
-        // 挂壁播放器
-        const { pathname } = this.props.location
     }
     componentDidUpdate() {
         // 播放器位置控制
@@ -55,7 +53,7 @@ class MiniPlayer extends Component {
         const { pathname } = this.props.location
         const { isFullscreen } = this.props
         const miniplayerDOM = this.miniplayerRef.current
-        if (isFullscreen || /^\/video\/\d{1,}/.test(pathname)) {
+        if (isFullscreen || /^\/video\/\d{1,}/.test(pathname) || /^\/login/.test(pathname)) {
             miniplayerDOM.style.bottom = '-40px'
         } else {
             // 主要页面player在tabber之上显示

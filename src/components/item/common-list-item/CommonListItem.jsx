@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Delete } from '@icon-park/react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 import './CommonListItem.less'
 
 export default class CommonListItem extends Component {
@@ -8,7 +9,7 @@ export default class CommonListItem extends Component {
         return (
             <div className='commonListItem' onClick={() => clickHandler()}>
                 <div className="cover" style={{ width }}>
-                    <img src={coverUrl} />
+                    <LazyLoadImage src={coverUrl} effect="blur" />
                 </div>
                 <div className="right">
                     <div className="title">{title}</div>

@@ -13,6 +13,9 @@ const service = axios.create({
 
 // 添加请求拦截器
 service.interceptors.request.use(config => {
+    if (config.url.includes('/login')) {
+        config.params.realIP = '211.161.244.70';
+    }
     return config
 })
 
@@ -20,7 +23,6 @@ service.interceptors.request.use(config => {
 service.interceptors.response.use(response => {
     return response.data
 }, error => {
-    console.log(error);
     const response = error.response
     const data = response?.data
     if (response && typeof data === 'object') {
@@ -30,7 +32,7 @@ service.interceptors.response.use(response => {
             // 1.跳转到登录页面
             window.location.href = '/login'
             // 2.登出处理
-
+            console.log(data.msg);
         } else if (data.code === 503 && data.message === '验证码错误') {
             Toast.show({
                 content: data.message,

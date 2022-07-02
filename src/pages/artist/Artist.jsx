@@ -5,6 +5,7 @@ import { Trophy } from '@icon-park/react'
 import withRouter from '@/utils/withRouter'
 import { getTopArtist } from '@/api/artist'
 import NavBar from '@/components/navbar/NavBar'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 import './Artist.less'
 
 class Artist extends Component {
@@ -67,7 +68,7 @@ class Artist extends Component {
                       }
                     </div>
                     <div className="avatar">
-                      <img src={a.artist_avatar} />
+                      <LazyLoadImage src={a.artist_avatar} effect="blur"/>
                     </div>
                     <div className="name">
                       {a.artist_name}

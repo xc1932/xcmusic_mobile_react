@@ -4,6 +4,7 @@ import BScroll from 'better-scroll'
 import { Tabs, Swiper, Toast, DotLoading } from 'antd-mobile'
 import withRouter from '@/utils/withRouter'
 import { getNewDisc } from '@/api/album'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 import Loading from '@/components/loading/Loading'
 import NavBar from '@/components/navbar/NavBar'
 import './Album.less'
@@ -134,6 +135,9 @@ class Album extends Component {
     // 获取数据
     this.initData()
   }
+  componentDidUpdate() {
+    this.refreshBS()
+  }
   render() {
     const { swiperRef, allWrapperRef, zhWrapperRef, eaWrapperRef, krWrapperRef, jpWrapperRef, tabSwitch, swiperSwitch } = this
     const { navigate } = this.props
@@ -171,7 +175,7 @@ class Album extends Component {
                       return (
                         <div className="albumItem" key={index} onClick={() => navigate(`${a.album_id}`)}>
                           <div className="albumCover">
-                            <img src={a.album_cover} />
+                            <LazyLoadImage src={a.album_cover} effect="blur" />
                           </div>
                           <div className="albumTitle">
                             {a.album_name}
@@ -198,7 +202,7 @@ class Album extends Component {
                       return (
                         <div className="albumItem" key={index} onClick={() => navigate(`${a.album_id}`)}>
                           <div className="albumCover">
-                            <img src={a.album_cover} />
+                            <LazyLoadImage src={a.album_cover} effect="blur" />
                           </div>
                           <div className="albumTitle">
                             {a.album_name}
@@ -225,7 +229,7 @@ class Album extends Component {
                       return (
                         <div className="albumItem" key={index} onClick={() => navigate(`${a.album_id}`)}>
                           <div className="albumCover">
-                            <img src={a.album_cover} />
+                            <LazyLoadImage src={a.album_cover} effect="blur" />
                           </div>
                           <div className="albumTitle">
                             {a.album_name}
@@ -252,7 +256,7 @@ class Album extends Component {
                       return (
                         <div className="albumItem" key={index} onClick={() => navigate(`${a.album_id}`)}>
                           <div className="albumCover">
-                            <img src={a.album_cover} />
+                            <LazyLoadImage src={a.album_cover} effect="blur" />
                           </div>
                           <div className="albumTitle">
                             {a.album_name}
@@ -279,7 +283,7 @@ class Album extends Component {
                       return (
                         <div className="albumItem" key={index} onClick={() => navigate(`${a.album_id}`)}>
                           <div className="albumCover">
-                            <img src={a.album_cover} />
+                            <LazyLoadImage src={a.album_cover} effect="blur" />
                           </div>
                           <div className="albumTitle">
                             {a.album_name}

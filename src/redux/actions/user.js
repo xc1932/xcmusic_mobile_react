@@ -8,8 +8,11 @@ import {
     USER_LOGINTYPE,
     USER_ISLOGIN,
 } from '../constant'
+import { logout } from '@/api/auth'
 
 export const saveLoginInfoAction = (value) => {
+    // 处理刚注册但没返回profile数据的操作
+    if (value.account == null || value.profile == null) return
     // 将登录信息存储到本地
     localStorage.setItem(USER_ACCOUNT, JSON.stringify(value.account))
     localStorage.setItem(USER_PROFILE, JSON.stringify(value.profile))
@@ -29,5 +32,15 @@ export const deletLoginInfoAction = () => {
     localStorage.setItem(USER_LOGINTYPE, JSON.stringify(-1))
     localStorage.setItem(USER_ISLOGIN, JSON.stringify(false))
     return { type: DELETE_LOGIN_INFO }
+}
+
+export const logoutAction = () => {
+    // 从本地删除登录信息
+    deletLoginInfoAction()
+    // 退出登录
+    logout().then(res => {
+        console.log('logout', res);
+    })
+    return {}
 }
 

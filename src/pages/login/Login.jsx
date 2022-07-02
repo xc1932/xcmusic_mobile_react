@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useNavigate, Navigate } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { sendCaptcha, verifyCaptcha, loginWithPhone, loginWithEmail } from '@/api/auth'
+import { sendCaptcha, verifyCaptcha, loginWithPhone, loginWithEmail, logout } from '@/api/auth'
 import { saveLoginInfoAction } from '@/redux/actions/user'
-import { Form, Input, Button, Radio, Space } from 'antd-mobile'
+import { Form, Input, Button, Radio, Space, Toast } from 'antd-mobile'
 import './Login.less'
 
 function Login(props) {
@@ -19,7 +19,7 @@ function Login(props) {
   // 手机号码字段验证正则
   const phoneRegExp = /^1(3[0-9]|4[01456879]|5[0-35-9]|6[2567]|7[0-8]|8[0-9]|9[0-35-9])\d{8}$/
   // 验证码字段验证正则
-  const vcodeRegExp = /^\d{4}$/
+  const vcodeRegExp = /^\d{4,6}$/
   // 手机号码验证规则
   const phoneRules = [
     { required: true, message: '手机号不能为空' },
@@ -74,9 +74,13 @@ function Login(props) {
             saveLoginInfo(loginRes)
             navigate('/user', { replace: true })
           } else {
-            setIsLoading(false)
+            Toast.show({
+              content: loginRes.message,
+              icon: 'fail',
+              maskClickable: false
+            })
           }
-        }, () => {
+        }).finally(() => {
           setIsLoading(false)
         })
       }
@@ -94,15 +98,27 @@ function Login(props) {
         //登录信息存储
         saveLoginInfo(loginRes)
         navigate('/user', { replace: true })
+      } else if (loginRes.code === 250) {
+        Toast.show({
+          content: loginRes.message,
+          icon: 'fail',
+          maskClickable: false
+        })
+      } else {
+        Toast.show({
+          content: loginRes.message,
+          icon: 'fail',
+          maskClickable: false
+        })
       }
-    }, () => {
+    }).finally(() => {
       setIsLoading(false)
     })
   }
 
   return props.isLogin ? <Navigate to='/user' /> : (
     <div className='login'>
-      <div className="close" onClick={() => navigate(-1)}>
+      <div className="close" onClick={() => navigate(`/home`)}>
         取消
       </div>
       <div className="avatar"></div>

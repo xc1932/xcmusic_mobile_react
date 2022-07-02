@@ -1,7 +1,8 @@
 .userPage {
     display: flow-root;
-    height: 607px;
-    background-color: #eee;
+    // height: 607px;
+    height: 100%;
+    background-color: @color-light;
     overflow: hidden;
 
     .userCarWrapper {
@@ -16,6 +17,12 @@
             border-radius: @border-radius-normal;
             background-color: @color-white;
             #mixin-card-shallow;
+
+            .logout {
+                position: absolute;
+                top: -50px;
+                right: 5px;
+            }
 
             .avatar {
                 position: absolute;

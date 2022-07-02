@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { PlayOne } from '@icon-park/react'
 import { longNumberConvert } from '@/utils/common'
 import withRouter from '@/utils/withRouter'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 import './RectanglePlaylistItem.less'
 
 class RectanglePlaylistItem extends Component {
@@ -10,7 +11,7 @@ class RectanglePlaylistItem extends Component {
         return (
             <div className='rectanglePlaylistItem' onClick={() => navigate(`/playlist/${playlist.playlist_id}`)}>
                 <div className="playlistCover">
-                    <img src={playlist.playlist_cover} />
+                    <LazyLoadImage src={playlist.playlist_cover} effect="blur"/>
                 </div>
                 <div className="playlistTitle">
                     {playlist.playlist_name}

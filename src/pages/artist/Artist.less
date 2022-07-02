@@ -1,13 +1,16 @@
 .artistPage {
-    padding-top: 40px;
+    display: flow-root;
     height: 100%;
 
     .scrollWrapper {
-        height: 627px;
+        // height: 627px;
+        margin-top: 40px;
+        height: calc(100% - 40px);
         overflow: hidden;
 
         .scrollContent {
-            padding: 10px 20px 50px;
+            display: flow-root;
+            padding: 0 20px 20px;
 
             .artistItem {
                 margin-bottom: 15px;
@@ -32,9 +35,14 @@
                     overflow: hidden;
                     #mixin-card-shallow;
 
-                    img {
+                    span {
                         width: 100%;
                         height: 100%;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                        }
                     }
                 }
 

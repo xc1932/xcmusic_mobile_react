@@ -158,6 +158,8 @@ class FullscreenControls extends Component {
     }
     // 更新用户喜欢的音乐
     updateUserLikedTracks = () => {
+        const { isLogin } = this.props
+        if (!isLogin) return
         const { userId } = this.props
         // 获取用户喜欢的音乐列表
         getLikeList({ uid: userId }).then(res => {
@@ -168,6 +170,8 @@ class FullscreenControls extends Component {
     }
     //更新用户的歌单
     updateUserPlaylist = () => {
+        const { isLogin } = this.props
+        if (!isLogin) return
         const { userId } = this.props
         getUserPlaylist({ uid: userId }).then(res => {
             if (res.code === 200) {
@@ -186,6 +190,8 @@ class FullscreenControls extends Component {
     // 收藏一首歌
     likeATrack = (e, type, id) => {
         e.stopPropagation()
+        const { isLogin } = this.props
+        if (!isLogin) return
         let like = true
         if (type === 1) {
             like = false
@@ -205,6 +211,8 @@ class FullscreenControls extends Component {
     }
     // 添加到歌单
     addToPlaylist = (pId, tId) => {
+        const { isLogin } = this.props
+        if (!isLogin) return
         updateUserPlaylist({ op: 'add', pid: pId, tracks: tId }).then(res => {
             if (res.code === 200) {
                 Toast.show({
@@ -252,7 +260,7 @@ class FullscreenControls extends Component {
     }
     render() {
         const { scrollWrapperRef, commentWrapperRef, likeATrack, updateUserPlaylist, addToPlaylist } = this
-        const { playStatus, playMode, totalTime, currentTrack } = this.props
+        const { playStatus, playMode, totalTime, currentTrack, isLogin } = this.props
         const { currentTime, popupVisable, addToPlaylistPopupVisable, userLikedTracks, userPlaylists, comments } = this.state
         return (
             <div className='fullscreenControls'>
@@ -264,7 +272,7 @@ class FullscreenControls extends Component {
                     }
                     <Download theme="outline" size="30" fill="#fff" onClick={this.download} />
                     <Comment theme="outline" size="30" fill="#fff" onClick={this.popupControl} />
-                    <Add theme="outline" size="30" fill="#fff" onClick={() => this.setState({ addToPlaylistPopupVisable: true })} />
+                    <Add theme="outline" size="30" fill="#fff" onClick={() => this.setState({ addToPlaylistPopupVisable: isLogin ? true : false })} />
                     <VolumeNotice theme="outline" size="30" fill="#fff" onClick={this.popupControl} />
                 </div>
                 <div className="processbar">
@@ -403,6 +411,7 @@ class FullscreenControls extends Component {
 
 export default connect(
     state => ({
+        isLogin: state.user.isLogin,
         userId: state.user?.profile.userId,
         playMode: state.player.playMode,
         playList: state.player.playList,

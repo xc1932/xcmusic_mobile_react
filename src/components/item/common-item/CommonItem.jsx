@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { PlayOne } from '@icon-park/react'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 import './CommonItem.less'
 
 export default class CommonItem extends Component {
@@ -13,7 +14,7 @@ export default class CommonItem extends Component {
             <div className='commonItem' style={{ width }} onClick={() => clickHandler()}>
                 <div className="commonItemTop">
                     <div className="commonItemCover" style={{ width, height, borderRadius }}>
-                        <img src={coverUrl} />
+                        <LazyLoadImage src={coverUrl} effect="blur" />
                     </div>
                     <div className="commonItemPlayCount" style={{ display: playCount ? '' : 'none' }}>
                         <PlayOne theme="filled" size="18" fill="#fff" />
@@ -21,7 +22,9 @@ export default class CommonItem extends Component {
                     </div>
                     <div className="commonItemPublishTime" style={{ display: publishTime ? '' : 'none' }}>{publishTime}</div>
                 </div>
-                <div className="commonItemBot" style={{ textAlign }}>{name}</div>
+                <div className="commonItemBot" style={{ width, textAlign }}>
+                    {name}
+                </div>
             </div>
         )
     }

@@ -21,7 +21,10 @@ export function loginWithEmail(params) {
     return request({
         url: '/login',
         method: 'post',
-        params
+        params: {
+            ...params,
+            timestamp: new Date().getTime()
+        }
     })
 }
 
@@ -42,7 +45,10 @@ export function loginWithPhone(params) {
     return request({
         url: '/login/cellphone',
         method: 'post',
-        params
+        params: {
+            ...params,
+            timestamp: new Date().getTime()
+        }
     })
 }
 
@@ -90,6 +96,9 @@ export function logout() {
     return request({
         url: '/logout',
         method: 'post',
+        params: {
+            timestamp: new Date().getTime()
+        }
     })
 }
 
@@ -100,5 +109,30 @@ export function getLoginStatus() {
     return request({
         url: '/login/status',
         method: 'post',
+        params: {
+            timestamp: new Date().getTime()
+        }
+    })
+}
+
+// 5.游客登录
+// 游客登录
+// 说明 : 直接调用此接口, 可获取游客cookie,如果遇到其他接口
+// 未登录状态报400状态码需要验证的错误,可使用此接口获取游客cookie避免报错
+// 接口地址 : /register/anonimous
+export function anonimousLogin() {
+    return request({
+        url: '/register/anonimous',
+        method: 'get'
+    })
+}
+
+// 6.刷新登录
+// 说明 : 调用此接口 , 可刷新登录状态,返回内容包含新的cookie(不支持刷新二维码登录的cookie)
+// 调用例子 : /login/refresh
+export function refreshLogin(){
+    return request({
+        url: '/login/refresh',
+        method: 'get'
     })
 }
