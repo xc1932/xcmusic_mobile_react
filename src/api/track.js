@@ -147,22 +147,22 @@ function rawDetailDataConvert(tracks, privileges, urls) {
 // 获取歌曲的播放权限
 function trackPrivilegeConvert(url, fee, noCopyrightRcmd) {
     let playable = true, reason = ''
+    switch (fee) {
+        case 0:
+            if (noCopyrightRcmd !== null && noCopyrightRcmd !== undefined) reason = '无版权'
+            break
+        case 1:
+            reason = 'VIP歌曲'
+            break
+        case 4:
+            reason = '付费专辑'
+            break
+        case 8:
+            reason = '会员专享高品质音乐'
+    }
     if (url == null) {
         playable = false
         reason = '无法播放'
-        switch (fee) {
-            case 0:
-                if (noCopyrightRcmd !== null && noCopyrightRcmd !== undefined) reason = '无版权'
-                break
-            case 1:
-                reason = 'VIP歌曲'
-                break
-            case 4:
-                reason = '付费专辑'
-                break
-            case 8:
-                reason = '会员专享高品质音乐'
-        }
     }
     return { playable, reason }
 }

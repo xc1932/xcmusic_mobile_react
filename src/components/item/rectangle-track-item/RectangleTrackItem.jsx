@@ -37,7 +37,12 @@ class RectangleTrackItem extends Component {
                 </div>
                 <div className="trackDesc">
                     <div className="trackName">
-                        <div className="privilege" style={{ display: track.track_privilege?.playable ? 'none' : '' }}>({track.track_privilege?.reason})</div>
+                        <span
+                            className="privilege"
+                            style={{ display: track.track_privilege?.playable ? 'none' : '' }}
+                        >
+                            ({track.track_privilege?.reason})
+                        </span>
                         {track.track_name}
                     </div>
                     <div className="trackArtists">
