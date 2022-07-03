@@ -152,13 +152,13 @@ function trackPrivilegeConvert(url, fee, noCopyrightRcmd) {
             if (noCopyrightRcmd !== null && noCopyrightRcmd !== undefined) reason = '无版权'
             break
         case 1:
-            reason = 'VIP歌曲'
+            reason = 'VIP' //VIP歌曲
             break
         case 4:
-            reason = '付费专辑'
+            reason = '付费' //付费专辑
             break
         case 8:
-            reason = '会员专享高品质音乐'
+            reason = 'SQ' //会员专享高品质音乐
     }
     if (url == null) {
         playable = false

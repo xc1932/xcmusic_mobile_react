@@ -5,6 +5,7 @@ import { sendCaptcha, verifyCaptcha, loginWithPhone, loginWithEmail, logout } fr
 import { saveLoginInfoAction } from '@/redux/actions/user'
 import { Form, Input, Button, Radio, Space, Toast } from 'antd-mobile'
 import './Login.less'
+import wangyiyun from '@/assets/images/wangyiyun.svg'
 
 function Login(props) {
   // router

@@ -63,7 +63,7 @@ class Player extends Component {
   // audio 暂停
   audioPause = () => {
     const audioDOM = this.audioRef.current
-    try {
+    try {      
       audioDOM.pause()
       this.setState({ playStatus: false })
     } catch (error) {
@@ -97,7 +97,6 @@ class Player extends Component {
 
   // 播放器可以播放处理
   canplayHandler = () => {
-    console.log('canplayHandler');
     // 当 audio 获取 url (切换歌曲、将歌曲添加到播放器)并且canplay后，
     // 根据redux中的播放状态操作DOM播放歌曲
     const { realPlayStatus } = this.props
@@ -147,7 +146,7 @@ class Player extends Component {
     // 1.处理播放路径失效问题
     console.log('播放出错(audio Error)', err);
     // 暂停播放
-    this.audioPause()
+    this.setState({ playStatus: false })
     // 更新播放器数据
     this.updatePlayerData()
   }
